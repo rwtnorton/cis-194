@@ -5,13 +5,24 @@ module Cis194.Hw.Week1 where
 -------------
 
 lastDigit :: Integer -> Integer
-lastDigit _ = undefined
+lastDigit n = n `mod` 10
 
 dropLastDigit :: Integer -> Integer
-dropLastDigit _ = undefined
+dropLastDigit n = n `div` 10
+
+dunno :: [Integer] -> Integer -> [Integer]
+dunno acc x = if x < 10
+              then x:acc
+              else let x'   = dropLastDigit x
+                       lst  = lastDigit x
+                       acc' = lst:acc
+                   in  dunno acc' x'
+
+splitDigit :: Integer -> [Integer]
+splitDigit n = [dropLastDigit n, lastDigit n]
 
 toDigits :: Integer -> [Integer]
-toDigits _ = undefined
+toDigits n = dunno [] n
 
 doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther _ = undefined
