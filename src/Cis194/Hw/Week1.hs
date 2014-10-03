@@ -25,10 +25,10 @@ toDigits :: Integer -> [Integer]
 toDigits n = dunno [] n
 
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther _ = undefined
+doubleEveryOther xs = reverse $ map (\(i,x) -> if odd i then 2*x else x) $ zip [0..] $ reverse xs
 
 sumDigits :: [Integer] -> Integer
-sumDigits _ = undefined
+sumDigits xs = sum $ map (\x -> sum $ toDigits x) xs
 
 validate :: Integer -> Bool
 validate _ = undefined
