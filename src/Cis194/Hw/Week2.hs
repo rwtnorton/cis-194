@@ -1,10 +1,3 @@
-{-
-Name: <your name here>
-Collaborators: <your collaborators here, or "none">
-Notes: <any particular notes about your work -- what you struggled with,
-        what's not working, what's really cool, etc.>
--}
-
 module HW02 where
 
 import Words
