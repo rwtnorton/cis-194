@@ -27,7 +27,25 @@ type STemplate = Template
 
 -- Write your code below:
 formableBy :: String -> Hand -> Bool
-formableBy = undefined
+formableBy needle haystack = all isInHaystack needleH
+  where needleH         = histo needle
+        haystackH       = histo haystack
+        isInHaystack hp = hasHistoPair hp haystackH
+
+histo :: Ord a => [a] -> [(a, Int)]
+histo cs = map (\s -> (head s, length s)) $ group $ sort cs
+
+--hasHistoPair Ord a => (a, Int) -> [(a, Int)] -> Bool
+--hasHistoPair :: Eq a => (a, t) -> [(a, b)] -> Bool
+--hasHistoPair :: (Ord a1, Eq a) => (a, a1) -> [(a, a1)] -> Bool
+hasHistoPair :: (Ord a1, Num a1, Eq a) => (a, a1) -> [(a, a1)] -> Bool
+hasHistoPair (c,v) hps = case lookup c hps of
+                         Just n  -> (v > 0) && (n > 0) && (v <= n)
+                         Nothing -> False
+
+test1 = formableBy "fun" "xnifuel" == True
+test2 = formableBy "haskell" "klehals" == True
+test3 = formableBy "haskell" "klehays" == False
 
 wordsFrom :: Hand -> [String]
 wordsFrom hand = filter (`formableBy` hand) allWords
